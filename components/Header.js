@@ -8,7 +8,7 @@ const Logo = styled.h1`
   margin-left: 2rem;
   position: relative;
   z-index: 2;
-  background: red;
+  background: var(--red);
   transform: skew(-7deg);
   a {
     color: #fff;
@@ -39,11 +39,11 @@ const Header = () => (
       <Logo>
         <Link href="/">Shoprr</Link>
       </Logo>
-       
     </div>
     <div className="sub-bar">
       <p>Search</p>
     </div>
+
     <Nav />
   </HeaderStyles>
 );
