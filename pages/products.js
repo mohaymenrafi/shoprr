@@ -1,3 +1,9 @@
+import ProductsList from '../components/ProductsList';
+
 export default function Products() {
-  return <div>products</div>;
+  return (
+    <div>
+      <ProductsList />
+    </div>
+  );
 }
