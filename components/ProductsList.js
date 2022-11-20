@@ -1,26 +1,7 @@
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
 import styled from 'styled-components';
+import useGetAllProduct from '../hooks/useGetAllProduct';
+import Loader from './Loader';
 import { ProductCard } from './ProductCard';
-
-const ALL_PRODUCT_QUERY = gql`
-  query ALL_PRODUCTS_QUERY {
-    allProducts {
-      id
-      name
-      description
-      status
-      price
-      photo {
-        id
-        image {
-          publicUrl
-          filename
-        }
-      }
-    }
-  }
-`;
 
 const ProductListStyled = styled.div`
   display: grid;
@@ -29,9 +10,9 @@ const ProductListStyled = styled.div`
 `;
 
 const ProductsList = () => {
-  const { data, error, loading } = useQuery(ALL_PRODUCT_QUERY);
-  console.log(data, error, loading);
-  if (loading) return <h2>Loading</h2>;
+  const { data, error, loading } = useGetAllProduct();
+
+  if (loading) return <Loader />;
   if (error) return <h2>Some Error happend</h2>;
   return (
     <div>
