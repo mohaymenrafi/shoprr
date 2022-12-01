@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import useDeleteSingleProduct from '../hooks/useDeleteSingleProduct';
 
 export default function DeleteProduct({ id, children }) {
-  const { deleteProduct, loading, error } = useDeleteSingleProduct(id);
+  const { deleteProduct, loading, error, update } = useDeleteSingleProduct(id);
   const handleDelete = (e) => {
     e.preventDefault();
     Swal.fire({
@@ -17,7 +17,12 @@ export default function DeleteProduct({ id, children }) {
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteProduct();
+        deleteProduct({
+          variables: {
+            id,
+          },
+          update,
+        });
         Swal.fire('Deleted!', 'The product has been deleted.', 'success');
       }
     });

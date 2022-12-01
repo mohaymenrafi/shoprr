@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styled from 'styled-components';
 import useGetAllProduct from '../hooks/useGetAllProduct';
 import Loader from './Loader';
@@ -9,8 +10,8 @@ const ProductListStyled = styled.div`
   grid-gap: 60px;
 `;
 
-const ProductsList = () => {
-  const { data, error, loading } = useGetAllProduct();
+const ProductsList = ({ page }) => {
+  const { data, error, loading } = useGetAllProduct(page);
 
   if (loading) return <Loader />;
   if (error) return <h2>Some Error happend</h2>;

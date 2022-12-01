@@ -1,9 +1,10 @@
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
+import { perPage } from '../config';
 
 const ALL_PRODUCT_QUERY = gql`
-  query ALL_PRODUCTS_QUERY {
-    allProducts {
+  query ALL_PRODUCTS_QUERY($skip: Int = 0, $first: Int) {
+    allProducts(first: $first, skip: $skip) {
       id
       name
       description
@@ -20,8 +21,14 @@ const ALL_PRODUCT_QUERY = gql`
   }
 `;
 
-const useGetAllProduct = () => {
-  const { data, error, loading } = useQuery(ALL_PRODUCT_QUERY);
+const useGetAllProduct = (page) => {
+  const { data, error, loading } = useQuery(ALL_PRODUCT_QUERY, {
+    variables: {
+      first: perPage,
+      skip: perPage * page - perPage,
+    },
+  });
+
   return {
     loading,
     error,

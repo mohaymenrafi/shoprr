@@ -17,12 +17,13 @@ export const ProductCard = ({ product }) => (
     <p>{product.description}</p>
     <div className="buttonList">
       <Link
-        href={{
-          pathname: 'update',
-          query: {
-            id: product.id,
-          },
-        }}
+        // href={{
+        //   pathname: 'update',
+        //   query: {
+        //     id: product.id,
+        //   },
+        // }}
+        href={`/update?id=${product.id}`}
       >
         Edit ✏️
       </Link>
